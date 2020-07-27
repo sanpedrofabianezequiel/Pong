@@ -71,8 +71,9 @@ function love.load()        -- Inicializacion en el juego.
     sounds = {                                                                      --Indexamos la Key, con Source (Ubicacion del archivo. en string +, static)
         ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),      --  para utilizarlo es como un diccionario en Python, se le envia la Key:PLAY() 
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),                    --sounds['paddle_hit']:play()
-        ['wall_hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static')
-    }
+        ['wall_hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static')       ,
+        ['miCancion2'] = love.audio.newSource('sounds/miCancion2.mp3','static')
+     }
 
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {      -- inicializamos la Virtual Reality
@@ -113,7 +114,7 @@ function love.update(dt)            --Parametro DeltaTime
             ball.dx = -math.random(140, 200)                --Sino lanzo la pelota a la Izquierdo
         end
     elseif gameState == 'play' then
-        
+        sounds['miCancion2']:play()                 --Sonido
         if ball:collides(player1) then              --Detectar la colicion y si la detecta PLAYER 1
             ball.dx = -ball.dx * 1.03                   --La invierte + le aumento la velocidad, multiplicadole * DELTA TIME
             ball.x = player1.x + 5                          --ordenadas al EJE X (ANGULO)
